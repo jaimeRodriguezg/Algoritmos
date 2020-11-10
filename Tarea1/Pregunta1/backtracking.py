@@ -3,20 +3,20 @@ lista_soluciones = []
 suma = 0
 listaNueva= []
     
-#funcion que verifica los resultados de la sumarecursiva usando backtracking
+# Función que verifica los resultados de la suma usando backtracking.
+# Genera una listas de las soluciones --> [[6], [4,2], [3,3], [2,2,2]].
 def sumaRecursiva(t,n,lista, lista_aux, suma):
-    lista = lista [:]
     lista_aux = lista_aux[:] #hacemos una copia de la lista_aux, ya que las listas son mutables y se pasa la referencia 
     if suma == t:
-        lista_soluciones.append(lista_aux) #agregamos la solucion a la lista de soluciones 
+        lista_soluciones.append(lista_aux) #agregamos la solución a la lista de soluciones 
         return
     else:
         for pos in range(n):
-            lista_aux.append(lista[pos])#agregamos el elemento en la lista auxiliar
-            suma = sum(lista_aux) # generamos la suma acumulativa de la lista auxiliar
+            lista_aux.append(lista[pos]) #agregamos el elemento en la lista auxiliar
+            suma = sum(lista_aux) #generamos la suma acumulativa de la lista auxiliar
             if suma == t or suma < t:
-                sumaRecursiva(t,len(lista[pos+1:]),lista[pos+1:],lista_aux,suma)
-            lista_aux.pop()#eliminamos el último elemento para seguir iterando
+                sumaRecursiva(t,len(lista[pos+1:]),lista[pos+1:],lista_aux,suma) #llamamos a la función de forma recursiva con nuevos parametros, acotando la lista principal
+            lista_aux.pop() #eliminamos el último elemento para seguir iterando
         return
 
 
@@ -48,14 +48,11 @@ def imprimirResultado(listaResultado, t):
 
     return 
 
-
+#se lee el archivo txt y se itera y se llama la funcion de sumaRecursiva que genera el backtracking
 archivo = open("data.txt", 'r')
 lineas = archivo.readlines()
-print (lineas) 
-
 for linea in lineas:
     lista = []
-    print(f"la linea es {linea}")
     string= ""
     for index,elemento in enumerate(linea):
         if elemento == " ":
@@ -71,9 +68,13 @@ for linea in lineas:
     listaNueva = []
     t = lista[0]
     n = lista[1]
-    lista = lista[2:]
-    sumaRecursiva(t,n,lista, lista_aux, suma)
-    listaFinal = elementosRepetidos(lista_soluciones)
-    lista_soluciones = []
-    imprimirResultado(listaFinal,t)
-    listaFinal = []
+    #si lee cero, termina de iterar
+    if n == 0:
+        break
+    else:      
+        lista = lista[2:]
+        sumaRecursiva(t,n,lista, lista_aux, suma)
+        listaFinal = elementosRepetidos(lista_soluciones)
+        lista_soluciones = []
+        imprimirResultado(listaFinal,t)
+        listaFinal = []
