@@ -49,18 +49,20 @@ def imprimirResultado(listaResultado, t):
     return 
 
 #se leen inputs y se itera y se llama la funcion de sumaRecursiva que genera el backtracking
-
-linea = ""
-while linea != "0 0":
+while True:
     linea = input("")
     lista = linea.split(" ")
     lista = list(map(int, lista))
     t = lista[0]
     n = lista[1]
-    lista.pop(0)
-    lista.pop(0)
-    sumaRecursiva(t,n,lista, lista_aux, suma)
-    listaFinal = elementosRepetidos(lista_soluciones)
-    lista_soluciones = []
-    imprimirResultado(listaFinal,t)
-    listaFinal = [] 
+    if t == 0 and n == 0:
+        break
+    else:
+        lista.pop(0)
+        lista.pop(0)
+        sumaRecursiva(t,n,lista, lista_aux, suma)
+        listaFinal = elementosRepetidos(lista_soluciones)
+        lista_soluciones = []
+        imprimirResultado(listaFinal,t)
+        listaFinal = [] 
+    
