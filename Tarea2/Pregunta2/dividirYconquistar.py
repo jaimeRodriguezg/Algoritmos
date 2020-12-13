@@ -1,0 +1,1 @@
+print("esto es para un 100")
