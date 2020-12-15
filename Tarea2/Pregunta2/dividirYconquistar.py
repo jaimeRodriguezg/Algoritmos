@@ -1,12 +1,3 @@
-def cambiar_maximos_y_minimos(listaMinMax, nuevoVal):
-    if nuevoVal < listaMinMax[0]:
-        listaMinMax[0] = nuevoVal
-    if nuevoVal > listaMinMax[1]:
-        listaMinMax[1] = nuevoVal
-    return listaMinMax
-
-def resta_maximo_y_minimo(listaMinMax):
-    return (listaMinMax[1] - listaMinMax[0])
 
 
 def sum_max_dif_aux(n, subLista): # sub lista siempre tendra al menos 2 elementos
@@ -17,7 +8,6 @@ def sum_max_dif_aux(n, subLista): # sub lista siempre tendra al menos 2 elemento
     else:
         listaListasMinMax.append([subLista[1], subLista[0]]) # lista inicial (minimo, maximo)
 
-    
     for j in range(n-2): # itera para buscar el maximo y minimo para los subArreglos restantes
         val_siguiente = subLista[j+2]
         #j1 = j+1
@@ -52,8 +42,7 @@ def sum_max_dif(n, lista):
     return valReturn
         
             
-            
-
+        
 
 def main():
     arrLen = input("Ingresa Largo de Arreglo: \n>>> ")
