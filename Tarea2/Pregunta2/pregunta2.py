@@ -1,3 +1,5 @@
+import time
+
 def suma_maximos_subarreglos(arreglo,resultado):
     if(len(arreglo)==1):
         return arreglo[0]
@@ -13,6 +15,7 @@ def suma_maximos_subarreglos(arreglo,resultado):
         else:
             resultado = resultado + suma_maximos_subarreglos(arreglo[:pos_max],0)+suma_maximos_subarreglos(arreglo[pos_max+1:],0)
         return resultado
+
 def suma_minimos_subarreglos(arreglo,resultado):
     if(len(arreglo)==1):
         return arreglo[0]
@@ -28,7 +31,17 @@ def suma_minimos_subarreglos(arreglo,resultado):
         else:
             resultado = resultado + suma_minimos_subarreglos(arreglo[:pos_min],0)+suma_minimos_subarreglos(arreglo[pos_min+1:],0)
         return resultado
-largo = int(input("").strip())
-listaString=input("").strip().split()
-lista = list(map(int, listaString)) 
-print(suma_maximos_subarreglos(lista,0)-suma_minimos_subarreglos(lista,0))
+
+
+def main():
+    int(input("").strip())
+    listaString=input("").strip().split()
+    lista = list(map(int, listaString)) 
+    resultado = suma_maximos_subarreglos(lista,0)-suma_minimos_subarreglos(lista,0)
+    print(resultado)
+
+
+if __name__ == "__main__":
+    start_time = time.time()
+    main()
+    print("--- {} seconds ---".format(time.time() - start_time))
